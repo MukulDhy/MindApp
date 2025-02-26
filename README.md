@@ -2,6 +2,12 @@
 
 ![FastAPI Logo](https://fastapi.tiangolo.com/img/logo-margin/logo-teal.svg)
 
+
+
+
+## End Point 
+
+![https://mindapp-simulation.onrender.com/]
 ## Overview
 
 Welcome to the FastAPI Sensor Data API! This project provides a robust and efficient API to fetch real-time sensor data such as heart rate, gyroscope coordinates, temperature, and more. Built using FastAPI, this application is designed to handle multiple requests quickly and efficiently.
@@ -15,20 +21,117 @@ Welcome to the FastAPI Sensor Data API! This project provides a robust and effic
 
 ## API Endpoints
 
-Here are the available endpoints you can use:
+FastAPI Health Monitoring API
+Introduction
+This document provides details about the FastAPI application that serves as a health monitoring API. The API exposes various endpoints to retrieve health metrics from a simulated health monitoring device.
+API Endpoints
+1. Server Status
+GET /
+Returns the status of the server.
+Response:
 
-| Endpoint               | Method | Description                                       |
-|-----------------------|--------|---------------------------------------------------|
-| `/heart_rate`         | GET    | Returns heart rate and SpO2 values.              |
-| `/gyroscope`          | GET    | Returns gyroscope X, Y, Z coordinates.           |
-| `/temperature`        | GET    | Returns the current temperature.                  |
-| `/humidity`           | GET    | Returns the current humidity level.               |
-| `/pressure`           | GET    | Returns the atmospheric pressure.                 |
-| `/accelerometer`      | GET    | Returns accelerometer X, Y, Z coordinates.       |
-| `/location`           | GET    | Returns the current geographical location.        |
-| `/battery_status`     | GET    | Returns the current battery percentage.           |
-| `/step_count`         | GET    | Returns the current step count.                   |
-| `/light_intensity`    | GET    | Returns the current light intensity measurement.  |
+{
+    "success": true,
+    "message": "Python Server is working Fine....."
+}
+
+2. Heart Rate & SpO2
+GET /health/heart
+Returns simulated heart rate and SpO2 values.
+Response:
+
+{
+    "heart_rate": <random_integer_between_60_and_100>,
+    "sp_o2": <random_integer_between_95_and_100>
+}
+
+3. Gyroscope Data
+GET /sensor/gyroscope
+Returns gyroscope data for X, Y, and Z axes.
+Response:
+
+{
+    "x": <random_float_between_-10_and_10>,
+    "y": <random_float_between_-10_and_10>,
+    "z": <random_float_between_-10_and_10>
+}
+
+4. Accelerometer Data
+GET /sensor/accelerometer
+Returns accelerometer data for X, Y, and Z axes.
+Response:
+
+{
+    "x": <random_float_between_-5_and_5>,
+    "y": <random_float_between_-5_and_5>,
+    "z": <random_float_between_-5_and_5>
+}
+
+5. Temperature
+GET /health/temperature
+Returns the simulated body temperature.
+Response:
+
+{
+    "temperature": <random_float_between_36.0_and_37.5>
+}
+
+6. Blood Pressure
+GET /health/blood_pressure
+Returns simulated blood pressure values.
+Response:
+
+{
+    "systolic": <random_integer_between_110_and_140>,
+    "diastolic": <random_integer_between_70_and_90>
+}
+
+7. Step Counter
+GET /activity/steps
+Returns the simulated number of steps taken.
+Response:
+
+{
+    "steps": <random_integer_between_1000_and_15000>
+}
+
+8. Respiration Rate
+GET /health/respiration
+Returns the simulated respiration rate.
+Response:
+
+{
+    "respiration_rate": <random_integer_between_12_and_20>
+}
+
+9. ECG Data
+GET /health/ecg
+Returns simulated ECG signal data.
+Response:
+
+{
+    "ecg_signal": [<random_float_between_-1_and_1>, ... (10 values)]
+}
+
+10. Body Posture Detection
+GET /sensor/posture
+Returns the detected body posture.
+Response:
+
+{
+    "posture": "<Standing | Sitting | Lying Down>"
+}
+
+11. Device Battery Status
+GET /device/battery
+Returns the simulated battery status of the device.
+Response:
+
+{
+    "battery_level": <random_integer_between_10_and_100>,
+    "charging": <true | false>
+}
+
 
 ## Getting Started
 
