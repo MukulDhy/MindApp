@@ -1,19 +1,27 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import random
 from pydantic import BaseModel
 
 app = FastAPI()
+
+# Enable CORS for all origins
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all HTTP methods
+    allow_headers=["*"],  # Allows all headers
+)
 
 last_status = {}
 
 class StatusData(BaseModel):
     data: dict
 
-
 @app.get("/")
 def get_server_status():
-    return {"success":True,"message":"Python Server is working Fine....."}
-
+    return {"success": True, "message": "Python Server is working Fine....."}
 
 # Heart Rate & SpO2
 @app.get("/health/heart")
@@ -76,7 +84,6 @@ def update_status(status: StatusData):
 @app.get("/status")
 def get_status():
     return last_status
-
 
 # Run the server with Uvicorn if executed directly
 if __name__ == "__main__":
