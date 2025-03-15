@@ -16,8 +16,10 @@ app.add_middleware(
 
 last_status = {}
 
-class StatusData(BaseModel):
-    data: dict
+class Status(BaseModel):
+    status: str
+    rssi: int
+    color: str
 
 @app.get("/")
 def get_server_status():
@@ -74,9 +76,9 @@ def get_battery():
     return {"battery_level": random.randint(10, 100), "charging": random.choice([True, False])}
 
 @app.post("/update")
-def update_status(status: StatusData):
+async def update_status(status: Status):
     global last_status
-    last_status = status.data
+    last_status = status.dict()
     print("Received Data:", last_status)
     return {"message": "Data Received"}
 
