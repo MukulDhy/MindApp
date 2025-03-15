@@ -4,6 +4,12 @@ from pydantic import BaseModel
 
 app = FastAPI()
 
+last_status = {}
+
+class StatusData(BaseModel):
+    data: dict
+
+
 @app.get("/")
 def get_server_status():
     return {"success":True,"message":"Python Server is working Fine....."}
@@ -58,6 +64,19 @@ def get_posture():
 @app.get("/device/battery")
 def get_battery():
     return {"battery_level": random.randint(10, 100), "charging": random.choice([True, False])}
+
+@app.post("/update")
+def update_status(status: StatusData):
+    global last_status
+    last_status = status.data
+    print("Received Data:", last_status)
+    return {"message": "Data Received"}
+
+# Endpoint to fetch the latest received status (equivalent to Express "/status")
+@app.get("/status")
+def get_status():
+    return last_status
+
 
 # Run the server with Uvicorn if executed directly
 if __name__ == "__main__":
