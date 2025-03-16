@@ -19,6 +19,13 @@ Welcome to the FastAPI Sensor Data API! This project provides a robust and effic
 - **Interactive Documentation**: Automatically generated API documentation using Swagger UI.
 - **Scalable**: Designed to handle multiple requests simultaneously.
 
+# API END point - ESP32
+1 ) get - "/status"
+to get the status of the wifi signal 
+
+2) POST - "/update"
+   THis is the api to update the the value of the wifi signal in the backend server..
+
 ## API Endpoints
 
 FastAPI Health Monitoring API
